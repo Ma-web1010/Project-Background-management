@@ -1,24 +1,27 @@
-$(function() {
+$(function () {
   // 调用 getUserInfo 获取用户基本信息
-  getUserInfo()
+  getUserInfo();
 
-  var layer = layui.layer
+  var layer = layui.layer;
 
   // 点击按钮，实现退出功能
-  $('#btnLogout').on('click', function() {
+  $('#btnLogout').on('click', function () {
+    console.log('oka');
     // 提示用户是否确认退出
-    layer.confirm('确定退出登录?', { icon: 3, title: '提示' }, function(index) {
+    layer.confirm('确定退出登录?', { icon: 3, title: '提示' }, function (index) {
       //do something
       // 1. 清空本地存储中的 token
-      localStorage.removeItem('token')
+      localStorage.removeItem('token');
       // 2. 重新跳转到登录页面
-      location.href = '/login.html'
+      location.href = '/loginn.html'
 
       // 关闭 confirm 询问框
-      layer.close(index)
-    })
-  })
-})
+      layer.close(index);
+    });
+  });
+
+  // 入口函数结尾
+});
 
 // 获取用户的基本信息
 function getUserInfo() {
@@ -36,6 +39,7 @@ function getUserInfo() {
     // complete: function(res) {
     //   // console.log('执行了 complete 回调：')
     //   // console.log(res)
+    
     //   // 在 complete 回调函数中，可以使用 res.responseJSON 拿到服务器响应回来的数据
     //   if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
     //     // 1. 强制清空 token
@@ -45,7 +49,7 @@ function getUserInfo() {
     //   }
     // }
   })
-}
+};
 
 // 渲染用户的头像
 function renderAvatar(user) {
@@ -59,7 +63,7 @@ function renderAvatar(user) {
     $('.layui-nav-img')
       .attr('src', user.user_pic)
       .show()
-    $('.text-avatar').hide()
+    $('.text-avatar').hide();
   } else {
     // 3.2 渲染文本头像
     $('.layui-nav-img').hide()
@@ -68,4 +72,4 @@ function renderAvatar(user) {
       .html(first)
       .show()
   }
-}
+};
